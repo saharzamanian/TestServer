@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ts-deployment
+  namespace: sahar
+  labels:
+    app: testserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: testserver
+  template:
+    metadata:
+      labels:
+        app: testserver
+    spec:
+      containers:
+      - image: saharzamanian/testserver:latest
+        imagePullPolicy: Always
+        name: testserver
+        ports:
+        - containerPort: 5050
+          protocol: TCP
